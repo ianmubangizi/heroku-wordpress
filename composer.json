@@ -48,7 +48,7 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "./install.sh"
+      "src/install.sh"
     ]
   }
 }
