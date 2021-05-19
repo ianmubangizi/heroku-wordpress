@@ -48,11 +48,7 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "[ ! -d \"public\" ] && mkdir public",
-      "cp -R vendor/wordpress/wordpress/* public",
-      "[ -d \"vendor/wordpress/themes/wp-content/themes\" ] && cp -R vendor/wordpress/themes/wp-content/themes/* public/wp-content/themes",
-      "[ -d \"vendor/wordpress/plugins/wp-content/plugins\" ] && cp -R vendor/wordpress/plugins/wp-content/plugins/* public/wp-content/plugins",
-      "cp -R src/* public"
+      "./install.sh"
     ]
   }
 }
