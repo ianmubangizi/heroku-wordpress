@@ -1,52 +1,54 @@
 {
-    "name": "ianmubangizi/heroku-wordpress",
-    "description": "Template project for wordpress to be used in the heroku cloud",
-    "type": "project",
-    "authors": [
-        {
-            "name": "Ian Mubangizi",
-            "email": "io@ianmubangizi.com"
-        }
-    ],
-    "require": {
-        "wordpress/wordpress": "5.7.2",
-        "vlucas/phpdotenv": "^5.3"
-    },
-    "repositories": [
-        {
-            "type": "package",
-            "package": {
-                "name": "wordpress/wordpress",
-                "version": "5.7.2",
-                "dist": {
-                    "type": "zip",
-                    "url": "https://github.com/wordpress/wordpress/archive/5.7.2.zip"
-                }
-            }
-        },
-        {
-            "type": "composer",
-            "url": "https://wpackagist.org"
-        },
-        {
-            "type": "composer",
-            "url": "https://wp-cli.org/package-index"
-        }
-    ],
-    "extra": {
-        "installer-paths": {
-            "vendor/wordpress/must-use-plugins/wp-content/mu-plugins/{$name}/": [],
-            "vendor/wordpress/plugins/wp-content/plugins/{$name}/": [
-                "type:wordpress-plugin"
-            ],
-            "vendor/wordpress/themes/wp-content/themes/{$name}/": [
-                "type:wordpress-theme"
-            ]
-        }
-    },
-    "scripts": {
-        "post-install-cmd": [
-            "./install.sh"
-        ]
+  "name": "ianmubangizi/heroku-wordpress",
+  "description": "Template project for wordpress to be used in the heroku cloud",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Ian Mubangizi",
+      "email": "io@ianmubangizi.com"
     }
+  ],
+  "require": {
+    "wordpress/wordpress": "5.7.2",
+    "vlucas/phpdotenv": "^5.3"
+  },
+  "repositories": [
+    {
+      "type": "package",
+      "package": {
+        "name": "wordpress/wordpress",
+        "version": "5.7.2",
+        "dist": {
+          "type": "zip",
+          "url": "https://github.com/wordpress/wordpress/archive/5.7.2.zip"
+        }
+      }
+    },
+    {
+      "type": "composer",
+      "url": "https://wpackagist.org"
+    },
+    {
+      "type": "composer",
+      "url": "https://wp-cli.org/package-index"
+    }
+  ],
+  "extra": {
+    "installer-paths": {
+      "vendor/wordpress/must-use-plugins/wp-content/mu-plugins/{$name}/": [],
+      "vendor/wordpress/plugins/wp-content/plugins/{$name}/": [
+        "type:wordpress-plugin"
+      ],
+      "vendor/wordpress/themes/wp-content/themes/{$name}/": [
+        "type:wordpress-theme"
+      ]
+    }
+  },
+  "scripts": {
+    "post-install-cmd": [
+      "mkdir public",
+      "cp -R vendor/wordpress/wordpress/* public",
+      "cp -R src/* public"
+    ]
+  }
 }
