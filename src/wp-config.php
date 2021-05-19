@@ -26,27 +26,27 @@ require_once dirname(__DIR__) . '/vendor/autoload.php';
 
 if (isset($_ENV['DEVELOPMENT'])) {
 	$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
-	$dotenv->load();
 
+	$dotenv->load();
 	$dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD']);
 }
 
-define('DB_NAME',  $_ENV['DB_NAME']);
+define('DB_NAME',  		isset($_ENV['DB_NAME']) 	? $_ENV['DB_NAME'] 		: 'wordpress');
 
 /** MySQL database username */
-define('DB_USER', $_ENV['DB_USER']);
+define('DB_USER', 		isset($_ENV['DB_USER']) 	? $_ENV['DB_USER'] 		: 'wordpress');
 
 /** MySQL database password */
-define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
+define('DB_PASSWORD', 	isset($_ENV['DB_PASSWORD']) ? $_ENV['DB_PASSWORD'] 	: 'wordpress');
 
 /** MySQL hostname */
-define('DB_HOST', $_ENV['DB_HOST'] ?: 'localhost');
+define('DB_HOST', 		isset($_ENV['DB_HOST']) 	? $_ENV['DB_HOST'] 		: 'localhost');
 
 /** Database Charset to use in creating database tables. */
-define('DB_CHARSET', 'utf8');
+define('DB_CHARSET', 	isset($_ENV['DB_CHARSET']) 	? $_ENV['DB_CHARSET'] 	: 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
-define('DB_COLLATE', '');
+define('DB_COLLATE', 	isset($_ENV['DB_COLLATE']) 	? $_ENV['DB_COLLATE'] 	: '');
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -74,7 +74,7 @@ define('NONCE_SALT',       isset($_ENV['NONCE_SALT']) 		? $_ENV['NONCE_SALT']   
  * You can have multiple installations in one database if you give each
  * a unique prefix. Only numbers, letters, and underscores please!
  */
-$table_prefix = 'wp_';
+$table_prefix = isset($_ENV['WP_TABLE_PREFIX']) ? $_ENV['WP_TABLE_PREFIX'] : 'wp_';
 
 /**
  * For developers: WordPress debugging mode.
@@ -89,6 +89,8 @@ $table_prefix = 'wp_';
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
 define('WP_DEBUG', false);
+
+define('WP_DEFAULT_THEME', isset($_ENV['WP_DEFAULT_THEME']) ? $_ENV['WP_DEFAULT_THEME'] : 'astra');
 
 /* That's all, stop editing! Happy publishing. */
 

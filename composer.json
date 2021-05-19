@@ -9,9 +9,11 @@
     }
   ],
   "require": {
-    "wordpress/wordpress": "5.7.2",
-    "vlucas/phpdotenv": "^5.3",
     "wp-cli/wp-cli": "^2.1",
+    "wordpress/wordpress": "5.7.2",
+    "wpackagist-theme/astra": "3.4.4",
+
+    "vlucas/phpdotenv": "^5.3",
     "humanmade/s3-uploads": "^3.0"
   },
   "repositories": [
@@ -37,18 +39,25 @@
   ],
   "extra": {
     "installer-paths": {
-      "vendor/wordpress/must-use-plugins/wp-content/mu-plugins/{$name}/": [],
-      "vendor/wordpress/plugins/wp-content/plugins/{$name}/": [
+      "vendor/wordpress/must-use-plugins/{$name}/": [],
+      "vendor/wordpress/plugins/{$name}/": [
         "type:wordpress-plugin"
       ],
-      "vendor/wordpress/themes/wp-content/themes/{$name}/": [
+      "vendor/wordpress/themes/{$name}/": [
         "type:wordpress-theme"
       ]
     }
   },
   "scripts": {
     "post-install-cmd": [
-      "src/install.sh"
+      "rm -rf public && mkdir public",
+      "cp -R src/* public",
+      
+      "rm -rf vendor/wordpress/wordpress/wp-content/themes/t*",
+
+      "cp -R vendor/wordpress/wordpress/* public",
+      "cp -R vendor/wordpress/themes/* public/wp-content/themes",
+      "cp -R vendor/wordpress/plugins/* public/wp-content/plugins"
     ]
   }
 }

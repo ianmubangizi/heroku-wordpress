@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "f9b02db8ba6d884a12cf90909fe64f0e",
+    "content-hash": "9ec537861e85939eb67eaddcb2576b65",
     "packages": [
         {
             "name": "aws/aws-sdk-php",
@@ -1599,6 +1599,24 @@
                 "source": "https://github.com/wp-cli/wp-cli"
             },
             "time": "2018-12-18T17:37:51+00:00"
+        },
+        {
+            "name": "wpackagist-theme/astra",
+            "version": "3.4.4",
+            "source": {
+                "type": "svn",
+                "url": "https://themes.svn.wordpress.org/astra/",
+                "reference": "3.4.4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://downloads.wordpress.org/theme/astra.3.4.4.zip"
+            },
+            "require": {
+                "composer/installers": "~1.0"
+            },
+            "type": "wordpress-theme",
+            "homepage": "https://wordpress.org/themes/astra/"
         }
     ],
     "packages-dev": [],
