@@ -11,7 +11,8 @@
   "require": {
     "wordpress/wordpress": "5.7.2",
     "vlucas/phpdotenv": "^5.3",
-    "wp-cli/wp-cli": "^2.1"
+    "wp-cli/wp-cli": "^2.1",
+    "humanmade/s3-uploads": "^3.0"
   },
   "repositories": [
     {
@@ -47,8 +48,10 @@
   },
   "scripts": {
     "post-install-cmd": [
-      "mkdir public",
+      "[ ! -d \"public\" ] && mkdir public",
       "cp -R vendor/wordpress/wordpress/* public",
+      "cp -R vendor/wordpress/themes/wp-content/themes/* public/wp-content/themes",
+      "cp -R vendor/wordpress/plugins/wp-content/plugins/* public/wp-content/plugins",
       "cp -R src/* public"
     ]
   }
