@@ -1,4 +1,5 @@
 <?php
+
 /**
  * The base configuration for WordPress
  *
@@ -23,27 +24,29 @@
 
 require_once dirname(__DIR__) . '/vendor/autoload.php';
 
-$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
-$dotenv->load();
+if (isset($_ENV['DEVELOPMENT'])) {
+	$dotenv = Dotenv\Dotenv::createImmutable(dirname(__DIR__));
+	$dotenv->load();
 
-$dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD']);
+	$dotenv->required(['DB_HOST', 'DB_NAME', 'DB_USER', 'DB_PASSWORD']);
+}
 
-define( 'DB_NAME',  $_ENV['DB_NAME']);
+define('DB_NAME',  $_ENV['DB_NAME']);
 
 /** MySQL database username */
-define( 'DB_USER', $_ENV['DB_USER'] );
+define('DB_USER', $_ENV['DB_USER']);
 
 /** MySQL database password */
-define( 'DB_PASSWORD', $_ENV['DB_PASSWORD'] );
+define('DB_PASSWORD', $_ENV['DB_PASSWORD']);
 
 /** MySQL hostname */
-define( 'DB_HOST', $_ENV['DB_HOST'] ?: 'localhost' );
+define('DB_HOST', $_ENV['DB_HOST'] ?: 'localhost');
 
 /** Database Charset to use in creating database tables. */
-define( 'DB_CHARSET', 'utf8' );
+define('DB_CHARSET', 'utf8');
 
 /** The Database Collate type. Don't change this if in doubt. */
-define( 'DB_COLLATE', '' );
+define('DB_COLLATE', '');
 
 /**#@+
  * Authentication Unique Keys and Salts.
@@ -54,14 +57,14 @@ define( 'DB_COLLATE', '' );
  *
  * @since 2.6.0
  */
-define( 'AUTH_KEY',         $_ENV['AUTH_KEY'] ?:         	'' );
-define( 'SECURE_AUTH_KEY',  $_ENV['SECURE_AUTH_KEY'] ?:  	'' );
-define( 'LOGGED_IN_KEY',    $_ENV['LOGGED_IN_KEY'] ?:    	'' );
-define( 'NONCE_KEY',        $_ENV['NONCE_KEY'] ?:        	'' );
-define( 'AUTH_SALT',        $_ENV['AUTH_SALT'] ?:        	'' );
-define( 'SECURE_AUTH_SALT', $_ENV['SECURE_AUTH_SALT'] ?: 	'' );
-define( 'LOGGED_IN_SALT',   $_ENV['LOGGED_IN_SALT'] ?:   	'' );
-define( 'NONCE_SALT',       $_ENV['NONCE_SALT'] ?:       	'' );
+define('AUTH_KEY',         isset($_ENV['AUTH_KEY']) 		? $_ENV['AUTH_KEY']          :	'');
+define('SECURE_AUTH_KEY',  isset($_ENV['SECURE_AUTH_KEY']) 	? $_ENV['SECURE_AUTH_KEY']   :	'');
+define('LOGGED_IN_KEY',    isset($_ENV['LOGGED_IN_KEY']) 	? $_ENV['LOGGED_IN_KEY']     :	'');
+define('NONCE_KEY',        isset($_ENV['NONCE_KEY']) 		? $_ENV['NONCE_KEY']         :	'');
+define('AUTH_SALT',        isset($_ENV['AUTH_SALT']) 		? $_ENV['AUTH_SALT']         :	'');
+define('SECURE_AUTH_SALT', isset($_ENV['SECURE_AUTH_SALT']) ? $_ENV['SECURE_AUTH_SALT']  :	'');
+define('LOGGED_IN_SALT',   isset($_ENV['LOGGED_IN_SALT']) 	? $_ENV['LOGGED_IN_SALT']    :	'');
+define('NONCE_SALT',       isset($_ENV['NONCE_SALT']) 		? $_ENV['NONCE_SALT']        :	'');
 
 /**#@-*/
 
@@ -85,13 +88,13 @@ $table_prefix = 'wp_';
  *
  * @link https://wordpress.org/support/article/debugging-in-wordpress/
  */
-define( 'WP_DEBUG', false );
+define('WP_DEBUG', false);
 
 /* That's all, stop editing! Happy publishing. */
 
 /** Absolute path to the WordPress directory. */
-if ( ! defined( 'ABSPATH' ) ) {
-	define( 'ABSPATH', __DIR__ . '/' );
+if (!defined('ABSPATH')) {
+	define('ABSPATH', __DIR__ . '/');
 }
 
 /** Sets up WordPress vars and included files. */
